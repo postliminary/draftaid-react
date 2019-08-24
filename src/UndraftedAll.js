@@ -10,13 +10,13 @@ function UndraftedAll(props) {
       </div>
 
       <div className="row form-group">
-        <div className="form-group col-md-4">
-          <select value={ props.format } onChange={ props.fetch } >
-            <option value="standard">Standard</option>
-            <option value="ppr">PPR</option>
-            <option value="half_ppr">0.5 PPR</option>
-          </select>
-        </div>
+      {/*  <div className="form-group col-md-4">*/}
+      {/*    <select value={ props.format } onChange={ props.fetch } >*/}
+      {/*      <option value="standard">Standard</option>*/}
+      {/*      <option value="ppr">PPR</option>*/}
+      {/*      <option value="half_ppr">0.5 PPR</option>*/}
+      {/*    </select>*/}
+      {/*  </div>*/}
 
         <div className="col-md-8">
           <input

@@ -10,7 +10,7 @@ class PlayerTable extends PureComponent {
 
     return players.map((player, i) => {
       return (
-        <tr key={i}
+        <tr key={player.rank}
             className={this.trClassName(player.tier, this.props.disableColor)}
             onClick={() => this.onClick(player)}>
           {this.columns(player)}
@@ -47,9 +47,9 @@ class PlayerTable extends PureComponent {
   columns(player) {
     return this.props.fields.map((f, i) => {
       if (f === 'tier') {
-        return <td key={i}>Tier {player[f]}</td>
+        return <td key={f}>Tier {player[f]}</td>
       } else {
-        return <td key={i}>{player[f]}</td>
+        return <td key={f}>{player[f]}</td>
       }
     });
   }
