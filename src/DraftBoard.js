@@ -34,7 +34,7 @@ class DraftBoard extends Component {
                 isLoading: false,
             });
         } else {
-            this.fetchPlayers(this.state.format);
+            this.fetchPlayers(this.state.format, 300);
         }
     }
 
