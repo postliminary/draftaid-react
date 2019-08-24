@@ -19,6 +19,7 @@ class DraftBoard extends Component {
             fetchError: null,
             format: 'standard',
             query: '',
+            lastUpdated: null,
         };
 
         this.saveSnapshot = debounce(this.saveSnapshot);
@@ -65,6 +66,7 @@ class DraftBoard extends Component {
                     format: format,
                     query: '',
                     currentDraft: 0,
+                    lastUpdated: new Date(res.updatedAt),
                 }, self.saveSnapshot);
             });
         }).catch(function (err) {
@@ -152,6 +154,7 @@ class DraftBoard extends Component {
                     search={(e) => this.searchPlayers(e.target.value)}
                     format={this.state.format}
                     query={this.state.query}
+                    lastUpdated={this.state.lastUpdated}
                 />
 
                 <UndraftedPositions

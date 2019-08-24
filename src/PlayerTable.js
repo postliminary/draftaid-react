@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react';
+const maxHue = 300;
 
 class PlayerTable extends PureComponent {
   rows() {
     let players = this.props.players.slice();
+    const maxTier = this.props.players.reduce((max, p) => Math.max(p.tier, max), 1);
 
     if (this.props.size) {
       players = players.slice(0, this.props.size);
@@ -11,7 +13,9 @@ class PlayerTable extends PureComponent {
     return players.map((player, i) => {
       return (
         <tr key={player.rank}
-            className={this.trClassName(player.tier, this.props.disableColor)}
+            className={'pointer'}
+            style={this.trStyle(player.tier, this.props.disableColor, maxTier)}
+            title={`Avg ${player.average_rank} StdDev ${player.std_dev}`}
             onClick={() => this.onClick(player)}>
           {this.columns(player)}
         </tr>
@@ -25,23 +29,12 @@ class PlayerTable extends PureComponent {
     }
   }
 
-  trClassName(tier, disable) {
+  trStyle(tier, disable, maxTier) {
     if (disable) {
-      return 'pointer'
+      return {};
     }
-    if (tier % 4 === 0) {
-      return 'active pointer'
-    }
-    if (tier % 4 === 1) {
-      return 'success pointer'
-    }
-    if (tier % 4 === 2) {
-      return 'warning pointer'
-    }
-    if (tier % 4 === 3) {
-      return 'info pointer'
-    }
-    return 'danger pointer'
+
+    return { backgroundColor: `hsl(${maxHue - (maxHue / maxTier * tier)}, 100%, 90%)` };
   }
 
   columns(player) {
